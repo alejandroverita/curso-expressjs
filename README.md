@@ -16,3 +16,9 @@ Cada modulo de nuestras rutas es una mini aplicación en la que creamos sus ruta
 
 Qué es un middleware?
 Un middleware es un bloque de código que se ejecuta entre la petición que hace el usuario (request) hasta que la petición llega al servidor.
+
+### POST: Metodo para crear
+
+Middleware:
+
+El término middleware se refiere a un sistema de software que ofrece servicios y funciones comunes para las aplicaciones. En general, el middleware se encarga de las tareas de gestión de datos, servicios de aplicaciones, mensajería, autenticación y gestión de API.
