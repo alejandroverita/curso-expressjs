@@ -22,3 +22,41 @@ Un middleware es un bloque de código que se ejecuta entre la petición que hace
 Middleware:
 
 El término middleware se refiere a un sistema de software que ofrece servicios y funciones comunes para las aplicaciones. En general, el middleware se encarga de las tareas de gestión de datos, servicios de aplicaciones, mensajería, autenticación y gestión de API.
+
+### Introduccion a servicios
+
+Concepto
+Los servicios es donde encapsulamos todos los casos de usos y comenzar a interactuar con la lógica de negocio.
+En el caso de una tienda: hacer compras, transacciones, etc.
+.
+Estructura
+
+- Esta arquitectura está definida por capas.
+  .
+
+Entidades:
+
+- En esta capa encontramos las entidades base del negocio.
+- En nuestro caso: productos, categorías, órdenes de compra.
+  .
+
+Casos de uso
+
+- En esta capa tenemos lo relacionado a la lógica de negocio
+- En esta capa se encuentra los servicios
+  .
+
+Controladores
+
+- En esta capa se brinda el acceso.
+- Aquí encontramos el routing
+  .
+
+Flujo de trabajo:
+
+- Controladores: Encontramos los routes y middlewares.
+- Los controladores acceden a la capa de servicios
+- Servicios: donde se encuentra la lógica de negocio
+- Los servicios usan las librerías.
+- Las librerías se encargan de contactarse a la capa de entidades
+- Las librerías se contactan a otras fuentes de datos: API externa o base de datos.
