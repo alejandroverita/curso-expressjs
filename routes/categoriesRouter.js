@@ -1,24 +1,19 @@
 const express = require('express');
-const faker = require('faker');
+const CategoriesService = require('../services/categoriesService');
+
+const service = new CategoriesService();
+
 const categories = express.Router();
 
 categories.get('/', (req, res)=> {
-  res.json([
-    {
-      categories: faker.commerce.productAdjective(),
-    },
-    {
-      categories: faker.commerce.productAdjective(),
-    }
-  ]);
+  const categories = service.find()
+  res.json(categories);
 });
 
 categories.get('/:id',(req, res) => {
   const { id } = req.params;
-  res.json({
-    id,
-    categorie: faker.commerce.productAdjective(),
-  })
+  const category = service.findOne(id)
+  res.json(category)
 })
 
 categories.get('/:categoryId/products/:productsId',(req, res) => {
@@ -32,36 +27,22 @@ categories.get('/:categoryId/products/:productsId',(req, res) => {
 
 categories.post('/', (req, res) => {
   const body = req.body;
-  res.json({
-    message: 'created',
-    data: body
-  });
+  const newCategory = service.create(body)
+  res.json(newCategory);
 })
 
 categories.patch('/:id', (req, res) => {
   const { id } = req.params;
   const body = req.body;
+  const category = service.update(id, body)
 
-  res.json({
-    id,
-    message: 'Parcheado',
-    data: body,
-  })
+  res.json(category)
 })
 
 categories.delete('/:id', (req, res) => {
   const { id } = req.params;
-
-  res.json({
-    id,
-    message: 'delete',
-  })
-
-  res.status(200).json({
-    // data: products,
-    message: "Delete successfull"
-
-  })
+  const index = service.delete(id)
+  res.status(200).json(index)
 });
 
 module.exports = categories;

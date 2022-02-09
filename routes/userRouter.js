@@ -1,65 +1,41 @@
 
 const express = require('express');
+const UserService = require('../services/userService')
 
+const service = new UserService();
 const user = express.Router();
 
 user.get('/', (req, res) => {
-  const { limit, offset } = req.query;
+  const user = service.find();
+  // const { limit, offset } = req.query;
 
-  if(limit && offset) {
-    res.json({
-      limit,
-      offset
-    })
-  }
-  else{
-    res.send('Nothing to look')
-  }
+  res.json(user)
 });
 
 user.get('/:id', (req, res) => {
   const { id } = req.params;
-  res.json({
-    id,
-    name: 'Alejandro',
-    age: 21,
-    sex: 'Male',
-    role: 'Backend engineer'
-  })
+  const user = service.findOne(id);
+  res.json(user)
 })
 
 user.post('/', (req, res) => {
   const body = req.body;
-  res.json({
-    message: 'created',
-    data: body
-  });
+  const newUser = service.create(body)
+  res.json(newUser);
 })
 
 user.patch('/:id', (req, res) => {
   const { id } = req.params;
   const body = req.body;
-
-  res.json({
-    id,
-    message: 'Parcheado',
-    data: body,
-  })
+  const user = service.update(id, body)
+  res.json(user)
 })
 
 user.delete('/:id', (req, res) => {
   const { id } = req.params;
+  const user = service.delete(id)
 
-  res.json({
-    id,
-    message: 'delete',
-  })
-
-  res.status(200).json({
-    // data: products,
-    message: "Delete successfull"
-
-  })
+  res.status(200).json(user)
 });
 
 
