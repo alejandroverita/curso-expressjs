@@ -14,9 +14,6 @@ Crea un controlador(handler) de rutas modulares y montables. Una instancia de Ro
 
 Cada modulo de nuestras rutas es una mini aplicación en la que creamos sus rutas independientes y podemos incluirle middlewares, que se ejecutarán cuando se coincida con el path.
 
-Qué es un middleware?
-Un middleware es un bloque de código que se ejecuta entre la petición que hace el usuario (request) hasta que la petición llega al servidor.
-
 ### POST: Metodo para crear
 
 Middleware:
@@ -60,3 +57,15 @@ Flujo de trabajo:
 - Los servicios usan las librerías.
 - Las librerías se encargan de contactarse a la capa de entidades
 - Las librerías se contactan a otras fuentes de datos: API externa o base de datos.
+
+### Qué es un middleware?
+
+Middleware es software que permite uno o más tipos de comunicación o conectividad entre dos o más aplicaciones o componentes de aplicaciones en una red distribuida. Al facilitar la conexión de aplicaciones que no fueron diseñadas para conectarse entre sí, y al brindar funcionalidad para conectarlas de manera inteligente, el middleware agiliza el desarrollo de aplicaciones y acelera el tiempo de comercialización.
+
+Casos de uso:
+
+- Middleware a nivel de aplicación
+- Middleware a nivel de direccionamiento (routers)
+- Middleware para manejo de errores
+- Middlewares incorporados
+- Middleware de terceros

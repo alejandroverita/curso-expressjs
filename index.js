@@ -1,6 +1,6 @@
 const express = require('express');
 const routerApi = require('./routes');
-
+const { logError, errorHandler } = require('./middlewares/errorHandler')
 const app = express();
 
 const port = 3005;
@@ -12,6 +12,10 @@ app.get('/', (req, res)=> {
 })
 
 routerApi(app)
+
+/* Manejo de errores al final de la aplicacion */
+app.use(logError);
+app.use(errorHandler);
 
 app.listen(port, ()=> {
   console.log(`Mi puerto es ${port}`)

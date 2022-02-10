@@ -14,7 +14,7 @@ class UserService {
     })
   }
 
-  create(data) {
+  async create(data) {
     const newUser = {
       id: faker.datatype.uuid(),
       ...data
@@ -23,16 +23,16 @@ class UserService {
     return newUser;
   }
 
-  find() {
+  async find() {
     return this.user;
   }
 
-  findOne(id){
+  async findOne(id){
 
     return this.user.find(item => item.id === id)
   }
 
-  update(id, body){
+  async update(id, body){
     const index = this.user.findIndex(item => item.id === id);
     if( index === -1 ) {
       throw new Error( 'No user found')
