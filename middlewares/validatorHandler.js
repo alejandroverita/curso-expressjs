@@ -5,7 +5,7 @@ function validatorHandler(schema, property){
   return (req, res, next)=> {
     //la informacion dinamica viene en el request
     const data = req[property];
-    const {error} = schema.validate(data);
+    const {error} = schema.validate(data, { abortEarly: false});
 
     if (error) {
       next(boom.badRequest(error));
@@ -15,4 +15,4 @@ function validatorHandler(schema, property){
   }
 }
 
-module.exports = {validatorHandler}
+module.exports = validatorHandler
