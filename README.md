@@ -69,3 +69,7 @@ Casos de uso:
 - Middleware para manejo de errores
 - Middlewares incorporados
 - Middleware de terceros
+
+### Manejo de errores con Boom
+
+npm i @hapi/boom
