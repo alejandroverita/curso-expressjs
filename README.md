@@ -73,3 +73,7 @@ Casos de uso:
 ### Manejo de errores con Boom
 
 npm i @hapi/boom
+
+### Validacion de datos con Joi
+
+npm i joi
