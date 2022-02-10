@@ -1,5 +1,7 @@
 const express = require('express');
 const CategoriesService = require('../services/categoriesService');
+const validatorHandler = require('../middlewares/validatorHandler');
+const {createCategorySchema, updateCategorySchema, getCategorySchema} = require('../schemas/categoriesSchema');
 
 const service = new CategoriesService();
 
@@ -10,46 +12,46 @@ categories.get('/', async (req, res)=> {
   res.json(categories);
 });
 
-categories.get('/:id', async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const category = await service.findOne(id)
-    res.json(category)
-  } catch (error) {
-    next(error)
+categories.get('/:id',
+  validatorHandler(getCategorySchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const category = await service.findOne(id)
+      res.json(category)
+    } catch (error) {
+      next(error)
+    }
   }
-})
+)
 
-categories.get('/:categoryId/products/:productsId',(req, res) => {
-  const { categoryId , productsId } = req.params;
-
-  res.json({
-    categoryId,
-    productsId
-  });
-})
-
-categories.post('/', async (req, res, next) => {
-  try {
-    const body = req.body;
-    const newCategory = await service.create(body)
-    res.json(newCategory);
-  } catch (error) {
-    next(error)
+categories.post('/',
+  validatorHandler(createCategorySchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const newCategory = await service.create(body)
+      res.json(newCategory);
+    } catch (error) {
+      next(error)
+    }
   }
-})
+)
 
-categories.patch('/:id', async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const body = req.body;
-    const category = await service.update(id, body)
+categories.patch('/:id',
+  validatorHandler(updateCategorySchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const body = req.body;
+      const category = await service.update(id, body)
 
-    res.json(category)
-  } catch (error) {
-    next(error);
+      res.json(category)
+    } catch (error) {
+      next(error);
+    }
   }
-})
+)
 
 categories.delete('/:id', async (req, res) => {
   const { id } = req.params;

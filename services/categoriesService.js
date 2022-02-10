@@ -38,6 +38,8 @@ class CategoriesService {
     if (!category) {
       throw boom.notFound('Category not found')
     }
+
+    return category
   }
 
   async update(id, data){
