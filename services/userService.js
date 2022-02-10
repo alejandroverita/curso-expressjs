@@ -8,12 +8,17 @@ class UserService {
   }
 
   generate(){
-    this.user.push({
-      id: faker.datatype.uuid(),
-      name: faker.name,
-      age: faker.datatype.number(60),
-      role: faker.job
-    })
+    const limit = 10;
+    for (let i = 0; i< limit; i++){
+      this.user.push({
+        id: faker.datatype.uuid(),
+        name: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        age: faker.datatype.number(60),
+        role: faker.jobTitle
+      });
+    }
   }
 
   async create(data) {

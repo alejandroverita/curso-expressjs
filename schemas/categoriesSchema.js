@@ -8,7 +8,7 @@ const createCategorySchema = Joi.object({
 })
 
 const updateCategorySchema = Joi.object({
-  category: category.required()
+  category: category
 })
 
 const getCategorySchema = Joi.object({
