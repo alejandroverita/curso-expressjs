@@ -9,7 +9,7 @@ const name = Joi.string().min(3).max(20).messages({
 const lastName = Joi.string().min(2).max(50).messages({
     "string.pattern.base": "Last Name accepts alphabetic characters, numbers and spaces"
 });
-const age = Joi.integer().min(18).max(65)
+const age = Joi.number().integer().min(18).max(65)
 const role = Joi.string().min(3).max(50)
 
 const createUserSchema = Joi.object({

@@ -40,6 +40,7 @@ class UserService {
     if( !user) {
       throw boom.notFound('User not found')
     }
+    return user
   }
 
   async update(id, body){

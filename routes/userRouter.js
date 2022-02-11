@@ -2,7 +2,7 @@
 const express = require('express');
 const UserService = require('../services/userService')
 const validatorHandler = require('../middlewares/validatorHandler');
-const {createUserSchema, updateUserSchema, getUserSchema} = require('../schemas/categoriesSchema');
+const {createUserSchema, updateUserSchema, getUserSchema} = require('../schemas/userSchema');
 
 
 const service = new UserService();
@@ -16,10 +16,15 @@ user.get('/', async (req, res) => {
 
 user.get('/:id',
 validatorHandler(getUserSchema, 'params'),
-  async (req, res) => {
-    const { id } = req.params;
-    const user = await service.findOne(id);
-    res.json(user)
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const user = await service.findOne(id);
+      res.json(user)
+
+    } catch (error) {
+      next(error)
+    }
   }
 )
 
